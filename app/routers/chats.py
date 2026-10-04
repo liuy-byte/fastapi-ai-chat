@@ -109,9 +109,10 @@ async def send_message(
             else:
                 new_round = True
             yield sse(ev.type, ev.data)
-    except asyncio.CancelledError:
-        # 客户端断开时走到这里：什么都不存，接着往上抛让框架收尾
-        log.warning("chat %s 客户端断开，已输出 %d 段，本轮不保存", ctx.chat_id, len(answer))
+    except (asyncio.CancelledError, GeneratorExit) as e:
+        # 客户端断开时走到这里：正在等模型时被取消是 CancelledError，停在 yield 上被关闭是 GeneratorExit。
+        # 两种都只记日志、什么都不存，接着往上抛让框架收尾
+        log.warning("chat %s 客户端断开（%s），已输出 %d 段，本轮不保存", ctx.chat_id, type(e).__name__, len(answer))
         raise
     except Exception:
         # 模型或工具出错：日志里留完整异常，给前端的只说出错了，不把内部信息带出去

@@ -13,10 +13,10 @@ class Settings(BaseSettings):
     jwt_secret: str = Field(min_length=32)
     jwt_expire_minutes: int = 60 * 24
 
-    # 模型：任何 OpenAI 兼容接口都行，默认 MiniMax 国内站
-    llm_base_url: str = "https://api.minimaxi.com/v1"
+    # 模型：任何 OpenAI 兼容接口都行，默认 DeepSeek 官方接口
+    llm_base_url: str = "https://api.deepseek.com"
     llm_api_key: str = ""
-    llm_model: str = "MiniMax-M3"
+    llm_model: str = "deepseek-flash"
     # 设成 true 时用脚本化的假模型，不联网，本地调试和演示断线用
     llm_fake: bool = False
 

@@ -9,7 +9,7 @@
 - FastAPI（原生 SSE：`EventSourceResponse` + `ServerSentEvent`）
 - SQLAlchemy 2 异步 + MySQL 8.4（aiomysql）
 - PyJWT + pwdlib（Argon2）
-- LangChain 1.x `create_agent`，模型走 OpenAI 兼容接口
+- LangChain 1.x `create_agent`，模型走 OpenAI 兼容接口（默认 DeepSeek）
 - pytest + httpx，测试用 SQLite 和脚本化假模型，不联网
 
 ## 跑起来
