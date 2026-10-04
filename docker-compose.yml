@@ -1,0 +1,15 @@
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ai_chat
+      MYSQL_USER: chat
+      MYSQL_PASSWORD: chat
+    ports:
+      - "3306:3306"
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uchat", "-pchat"]
+      interval: 3s
+      retries: 20

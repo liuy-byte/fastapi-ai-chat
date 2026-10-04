@@ -1,0 +1,31 @@
+[project]
+name = "fastapi-ai-chat"
+version = "0.1.0"
+description = "FastAPI AI 对话后端 MVP：登录、对话隔离、工具调用、SSE 流式输出"
+requires-python = ">=3.12"
+dependencies = [
+    "aiomysql>=0.3.2",
+    "email-validator>=2.3.0",
+    "fastapi>=0.142.2",
+    "langchain>=1.4.3",
+    "langchain-openai>=1.6.7",
+    "pwdlib[argon2]>=0.3.1",
+    "pydantic-settings>=2.15.0",
+    "pyjwt>=2.15.1",
+    "sqlalchemy[asyncio]>=2.1.3",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[dependency-groups]
+dev = [
+    "aiosqlite>=0.22.1",
+    "httpx>=0.28.1",
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+pythonpath = ["."]
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
