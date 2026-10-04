@@ -90,7 +90,4 @@ def build_model() -> BaseChatModel:
         streaming=True,
         timeout=60,
         max_retries=1,
-        # MiniMax 默认把思考过程用 <think> 标签混在正文里，打开这个开关后思考单独返回，正文只剩回答。
-        # 这是 MiniMax 自己的参数，别家接口不认，只在连 MiniMax 时带上
-        extra_body={"reasoning_split": True} if "minimax" in settings.llm_base_url else None,
     )
